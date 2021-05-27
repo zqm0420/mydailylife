@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zqm.dao.BillMapper">
+    <select id="queryAllBills" resultType="Bill">
+        select * from dailylife.bill;
+    </select>
+
+    <select id="queryBillByID" resultType="Bill" parameterType="int">
+        select * from dailylife.bill where billID=${id};
+    </select>
+</mapper>

@@ -11,6 +11,9 @@
     <title>$Title$</title>
   </head>
   <body>
-  $END$
+    <h3>
+      <a href="${pageContext.request.contextPath}/bill/queryAll">查看所有账单</a>
+
+    </h3>
   </body>
 </html>

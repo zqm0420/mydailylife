@@ -12,9 +12,9 @@ public class UserServiceImpl implements UserService{
     @Autowired
     UserMapper userMapper;
 
-    public void setUserMapper(UserMapper userMapper) {
-        this.userMapper = userMapper;
-    }
+//    public void setUserMapper(UserMapper userMapper) {
+//        this.userMapper = userMapper;
+//    }
 
     @Override
     public int register(User user) {
