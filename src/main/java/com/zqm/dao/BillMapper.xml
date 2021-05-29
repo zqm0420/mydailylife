@@ -4,11 +4,40 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.zqm.dao.BillMapper">
-    <select id="queryAllBills" resultType="Bill">
-        select * from dailylife.bill;
+    <resultMap id="billMap" type="Bill">
+        <id property="id" column="id"/>
+        <result property="money" column="money"/>
+        <result property="payDate" column="payDate"/>
+        <result property="detail" column="detail"/>
+        <association property="sc" javaType="SpendingCategory">
+            <id property="id" column="scID"/>
+            <result property="name" column="scName"/>
+        </association>
+    </resultMap>
+
+
+    <select id="queryAllBills" resultMap="billMap">
+        select b.billID id,sc.categoryName scName,
+               money,payDate,detail from bill as b, spendingcategory as sc where b.spendingCategoryID=sc.categoryID;
     </select>
 
-    <select id="queryBillByID" resultType="Bill" parameterType="int">
-        select * from dailylife.bill where billID=${id};
+    <select id="queryBillByID" resultMap="billMap" parameterType="int">
+        select b.billID id,sc.categoryName scName,
+               money,payDate,detail from bill as b, spendingcategory as sc where b.billID=#{id};
     </select>
+
+    <insert id="addBill" parameterType="Bill">
+        insert into dailylife.bill(spendingCategoryID, money, detail)
+        VALUES(#{sc.id},#{money},#{detail});
+    </insert>
+
+    <update id="updateBill" parameterType="Bill">
+        update dailylife.bill
+        set spendingCategoryID = #{sc.id}, money=#{money}, detail=#{detail}
+        where billID=#{id};
+    </update>
+
+    <delete id="deleteBillByID">
+        delete from dailylife.bill where billID=#{id};
+    </delete>
 </mapper>
