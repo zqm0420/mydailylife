@@ -11,9 +11,9 @@
     <title>$Title$</title>
   </head>
   <body>
-    <h3>
-      <a href="${pageContext.request.contextPath}/bill/queryAll">查看所有账单</a>
 
-    </h3>
+  <h1><a href="${pageContext.request.contextPath}/user/login">登录</a> </h1>
+  <h1><a href="${pageContext.request.contextPath}/user/home">主页</a> </h1>
+
   </body>
 </html>
